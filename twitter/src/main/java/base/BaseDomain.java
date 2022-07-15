@@ -10,6 +10,9 @@ public class BaseDomain<ID extends Serializable> implements Serializable {
     @Id
     private ID id;
 
+    public BaseDomain() {
+    }
+
     public BaseDomain(ID id) {
         this.id = id;
     }
