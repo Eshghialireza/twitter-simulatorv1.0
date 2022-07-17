@@ -3,7 +3,9 @@ package service;
 import base.service.BaseService;
 import domain.User;
 
-public interface UserService extends BaseService<User,Long> {
-Boolean uniqueChecker(User user);
-User SafeSave(User user);
+public interface UserService extends BaseService<User, Long> {
+    Boolean uniqueChecker(User user);
+
+    User safeSave(User user);
+    User singIn(String username,String password);
 }

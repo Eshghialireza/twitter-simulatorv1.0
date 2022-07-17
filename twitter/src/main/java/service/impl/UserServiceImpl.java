@@ -15,7 +15,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long, UserRepositoryI
     //its just check the unique files
     @Override
     public Boolean uniqueChecker(User user) {
-        Boolean flag = false;
+        boolean flag = false;
         List<User> usersList = findAll();
         if (user.getId() != null) {
             for (int counter = 0; counter < usersList.size(); counter++) {
@@ -25,11 +25,11 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long, UserRepositoryI
             }
         }
 
-        for (int counter = 0; counter < usersList.size(); counter++) {
-            if (user.getUsername().equals(usersList.get(counter).getUsername())) {
+        for (User value : usersList) {
+            if (user.getUsername().equals(value.getUsername())) {
                 System.out.println("username that you entered is exist");
                 flag = true;
-            } else if (user.getPhoneNumber().equals(usersList.get(counter).getPhoneNumber())) {
+            } else if (user.getPhoneNumber().equals(value.getPhoneNumber())) {
                 System.out.println("phoneNumber that you entered is exist");
                 flag = true;
             }
@@ -39,10 +39,20 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long, UserRepositoryI
     }
 
     @Override
-    public User SafeSave(User user) {
-        if (uniqueChecker(user) == false) {
+    public User safeSave(User user) {
+        if (!uniqueChecker(user)) {
             user = save(user);
         }
         return user;
+    }
+
+    @Override
+    public User singIn(String username, String password) {
+       User user=repository.signIn(username,password);
+       if(user==null){
+           System.out.println("username or password is wrong");
+           return null;
+       }
+       return user;
     }
 }
