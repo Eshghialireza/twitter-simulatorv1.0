@@ -11,7 +11,7 @@ import java.util.List;
 public class User extends BaseDomain<Long> {
     private String firstname;
     private String lastName;
-
+    private String password;
     public User() {
     }
 
@@ -24,20 +24,38 @@ public class User extends BaseDomain<Long> {
     @OneToMany(mappedBy = "user")
     private List<UserLikes> userLikes;
 
-    public User(String firstname, String lastName, String username, String phoneNumber) {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User(String firstname, String lastName, String password, String username) {
         this.firstname = firstname;
         this.lastName = lastName;
+        this.password = password;
         this.username = username;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public User(Long aLong, String firstname, String lastName, String username, String phoneNumber) {
-        super(aLong);
-        this.firstname = firstname;
-        this.lastName = lastName;
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-    }
+
 
     public String getFirstname() {
         return firstname;
