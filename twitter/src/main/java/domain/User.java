@@ -1,6 +1,7 @@
 package domain;
 
-import base.BaseDomain;
+import jakarta.persistence.CascadeType;
+import repository.base.BaseDomain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -12,17 +13,31 @@ public class User extends BaseDomain<Long> {
     private String firstname;
     private String lastName;
     private String password;
-    public User() {
+    @Column(unique = true)
+    private String username;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstname='" + firstname + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 
     @Column(unique = true)
-    private String username;
-    @Column(unique = true)
     private String phoneNumber;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<Tweet> tweetsList;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<UserLikes> userLikes;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+    List<Comment> comments;
+
+    public User() {
+    }
 
     public String getPassword() {
         return password;
@@ -54,7 +69,6 @@ public class User extends BaseDomain<Long> {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 
 
     public String getFirstname() {
