@@ -1,7 +1,7 @@
-package base.repository.impl;
+package repository.base.repository.impl;
 
-import base.BaseDomain;
-import base.repository.BaseRepository;
+import repository.base.BaseDomain;
+import repository.base.repository.BaseRepository;
 import jakarta.persistence.EntityManager;
 
 import java.io.Serializable;

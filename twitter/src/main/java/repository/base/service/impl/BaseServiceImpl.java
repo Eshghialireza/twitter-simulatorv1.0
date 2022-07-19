@@ -1,10 +1,11 @@
-package base.service.impl;
+package repository.base.service.impl;
 
-import base.BaseDomain;
-import base.repository.BaseRepository;
-import base.service.BaseService;
+import repository.base.BaseDomain;
+import repository.base.repository.BaseRepository;
+import repository.base.service.BaseService;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseServiceImpl<E extends BaseDomain<ID>, ID extends Serializable, R extends BaseRepository<E, ID>> implements BaseService<E, ID> {
@@ -54,21 +55,23 @@ public class BaseServiceImpl<E extends BaseDomain<ID>, ID extends Serializable, 
 
     @Override
     public List<E> findAll() {
+        List<E> eList=new ArrayList<>();
         try {
-            return repository.findAll();
+            eList= repository.findAll();
         } catch (Exception exception) {
             System.out.println("we had a problem with database!!!");
-            return null;
         }
+        return eList;
     }
 
     @Override
     public E findById(ID id) {
+        E e=null;
         try {
-            return repository.findById(id);
+            e= repository.findById(id);
         } catch (Exception exception) {
             System.out.println("we had a problem with database");
-            return null;
         }
+        return e;
     }
 }

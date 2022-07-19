@@ -1,4 +1,4 @@
-package base.repository;
+package repository.base.repository;
 import java.io.Serializable;
 import java.util.List;
 

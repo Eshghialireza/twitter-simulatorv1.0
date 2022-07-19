@@ -1,4 +1,4 @@
-package base.service;
+package repository.base.service;
 
 import java.util.List;
 
