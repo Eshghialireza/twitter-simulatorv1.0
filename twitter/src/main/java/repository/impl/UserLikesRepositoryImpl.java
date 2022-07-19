@@ -1,6 +1,6 @@
 package repository.impl;
 
-import base.repository.impl.BaseRepositoryImpl;
+import repository.base.repository.impl.BaseRepositoryImpl;
 import domain.UserLikes;
 import jakarta.persistence.EntityManager;
 import repository.UserLikesRepository;

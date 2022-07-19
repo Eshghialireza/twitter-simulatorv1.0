@@ -1,6 +1,6 @@
 package service.impl;
 
-import base.service.impl.BaseServiceImpl;
+import repository.base.service.impl.BaseServiceImpl;
 import domain.User;
 import repository.impl.UserRepositoryImpl;
 import service.UserService;
@@ -42,6 +42,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long, UserRepositoryI
     public User safeSave(User user) {
         if (!uniqueChecker(user)) {
             user = save(user);
+            System.out.println("successfully signUp");
         }
         return user;
     }

@@ -1,6 +1,6 @@
 package domain;
 
-import base.BaseDomain;
+import repository.base.BaseDomain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
