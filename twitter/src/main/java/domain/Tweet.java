@@ -1,10 +1,7 @@
 package domain;
 
-import base.BaseDomain;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import repository.base.BaseDomain;
 
 import java.util.List;
 
@@ -57,6 +54,6 @@ public class Tweet extends BaseDomain<Long> {
         this.likesList = likesList;
     }
 
-    @OneToMany(mappedBy = "tweet")
+    @OneToMany(mappedBy = "tweet",cascade = CascadeType.REMOVE)
     private List<UserLikes> likesList;
 }
